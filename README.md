@@ -4,6 +4,6 @@
 
 #examples:
 ### 图片来自百度图片
-[原始图片](./images/src.JPG)
-[lines](./images/lines.jpg)
-[结果](./images/result.jpg)
+![原始图片](./images/src.JPG)
+![lines](./images/lines.jpg)
+![结果](./images/result.jpg)
