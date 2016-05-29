@@ -1,0 +1,6 @@
+*.exe
+*.obj
+x64/
+*.suo
+*.sdf
+packages/
