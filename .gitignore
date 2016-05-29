@@ -4,4 +4,6 @@ x64/
 *.suo
 *.sdf
 *.opensdf
+Input/
+Output/
 packages/
