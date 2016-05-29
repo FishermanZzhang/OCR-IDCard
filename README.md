@@ -4,7 +4,11 @@
 
 #examples:
 ### 图片来自百度图片
+原始图片
 ![原始图片](./images/src.JPG)
+LSD定位直线
 ![lines](./images/lines.jpg)
+寻找边缘交点
 ![points](./images/point.jpg)
+透视变换
 ![结果](./images/result.jpg)
