@@ -6,4 +6,5 @@
 ### 图片来自百度图片
 ![原始图片](./images/src.JPG)
 ![lines](./images/lines.jpg)
+![points](./images/points.jpg)
 ![结果](./images/result.jpg)
