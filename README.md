@@ -19,3 +19,22 @@
 4 透视变换
 
 ![结果](./images/result.jpg)
+
+1 原始图片
+
+![原始图片](./images/src2.JPG)
+
+2 LSD定位直线
+
+![lines](./images/lines22.jpg)
+
+3 寻找边缘交点
+
+![points](./images/point2.jpg)
+
+4 透视变换
+
+![结果](./images/result2.jpg)
+
+##not work examples
+
