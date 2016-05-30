@@ -36,12 +36,12 @@ void LSDDetectEdge::detect(cv::Mat& image, vector<cv::Vec4i>& edges)
 	//gray_y.convertTo(gray_y, CV_8U);
 	//cv::add(gray, gray_x,gray);
 	//cv::add(gray, gray_y, gray);
-	cv::Mat blurMat, blurMat16;
-	cv::GaussianBlur(gray, blurMat, cv::Size(3, 3), 0, 0);
-	cv::Laplacian(blurMat, blurMat16, CV_16S);
-	blurMat16 = cv::abs(blurMat16);
-	blurMat16.convertTo(blurMat, CV_8U);
-	cv::add(gray, blurMat, gray);
+	//cv::Mat blurMat, blurMat16;
+	//cv::GaussianBlur(gray, blurMat, cv::Size(3, 3), 0, 0);
+	//cv::Laplacian(blurMat, blurMat16, CV_16S);
+	//blurMat16 = cv::abs(blurMat16);
+	//blurMat16.convertTo(blurMat, CV_8U);
+	//cv::add(gray, blurMat, gray);
 	vector<vector<cv::Vec4i>> lines;
 	LSDLines(gray, lines);
 	if (lines.size() != 4) return;
