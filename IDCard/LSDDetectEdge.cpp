@@ -4,7 +4,7 @@
 
 LSDDetectEdge::LSDDetectEdge()
 {
-	detector_ = cv::createLineSegmentDetector(cv::LSD_REFINE_NONE, 0.8, 0.6, 4.0, 20);
+	detector_ = cv::createLineSegmentDetector(cv::LSD_REFINE_NONE, 0.8, 0.6, 1.5, 22.5);
 }
 
 
@@ -26,6 +26,22 @@ void LSDDetectEdge::detect(cv::Mat& image, vector<cv::Vec4i>& edges)
 	else{
 		gray = image.clone();
 	}
+	//±ßÔµÔöÇ¿
+	//cv::Mat gray_x, gray_y;
+	//cv::Sobel(gray, gray_x, CV_16S, 1, 0, 3);
+	//gray_x = cv::abs(gray_x);
+	//gray_x.convertTo(gray_x, CV_8U);
+	//cv::Sobel(gray, gray_y, CV_16S, 0, 1, 3);
+	//gray_y = cv::abs(gray_y);
+	//gray_y.convertTo(gray_y, CV_8U);
+	//cv::add(gray, gray_x,gray);
+	//cv::add(gray, gray_y, gray);
+	cv::Mat blurMat, blurMat16;
+	cv::GaussianBlur(gray, blurMat, cv::Size(3, 3), 0, 0);
+	cv::Laplacian(blurMat, blurMat16, CV_16S);
+	blurMat16 = cv::abs(blurMat16);
+	blurMat16.convertTo(blurMat, CV_8U);
+	cv::add(gray, blurMat, gray);
 	vector<vector<cv::Vec4i>> lines;
 	LSDLines(gray, lines);
 	if (lines.size() != 4) return;
