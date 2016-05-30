@@ -37,7 +37,7 @@
 ![结果](./images/result2.jpg)
 
 ##not work examples 
-if you have better methord ,please tell [me](mailto:1099905725@qq.com)
+#if you have better methord ,please tell [me](mailto:1099905725@qq.com)
 
 ![e1](./images/notworkexample1.png)
 
