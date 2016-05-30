@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <opencv2\opencv.hpp>
 #include "DetectEdge.h"
@@ -10,14 +11,25 @@ using namespace std;
 
 int main(int argc, char * argv[])
 {
-	cv::Mat color = cv::imread("../Input/13.jpg");
+	//cv::Mat color = cv::imread("../template/15.jpg");
 	//HoughDetectEdge de;
 	LSDDetectEdge de;
 
+	
 	vector<cv::Vec4i> edges;
-	cv::Mat dst;
-	de.detect(color, dst);
-	cv::imshow("img", dst);
+	ifstream input("./train.txt");
+	string imagename;
+	while (input >> imagename)
+	{
+		cv::Mat dst;
+		cv::Mat color = cv::imread("../Train/"+imagename);
+		//cv::imshow("color", color);
+		de.detect(color, dst);
+		cv::imshow("img", dst);
+		cv::waitKey();
+		cv::destroyAllWindows();
+	}
+
 
 	cv::waitKey();
 

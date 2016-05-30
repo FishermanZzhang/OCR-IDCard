@@ -53,24 +53,26 @@ bool LSDDetectEdge::detect(cv::Mat& image, cv::Mat& dst)
 #ifdef _DEBUG
 	for (size_t i = 0; i < PTransfrom.size(); ++i)
 	{
-		cv::circle(image, PTransfrom[i], 1, cv::Scalar(0, 0, 255));
+		cv::circle(image, PTransfrom[i], 2, cv::Scalar(0, 0, 255),2);
 	}
 	cv::imshow("point", image);
+	cv::imwrite("../output/point.jpg", image);
 	cv::waitKey();
 #endif //end _DEBUG
 	PTransto[0].x = 0;
 	PTransto[0].y = 0;
-	PTransto[1].x = 760;
+	PTransto[1].x = 640;
 	PTransto[1].y = 0;
 	PTransto[2].x = 0;
-	PTransto[2].y = 480;
-	PTransto[3].x = 760;
-	PTransto[3].y = 480;
+	PTransto[2].y = 404;
+	PTransto[3].x = 640;
+	PTransto[3].y = 404;
 	cv::Mat tf = cv::getPerspectiveTransform(PTransfrom, PTransto);
-	dst = cv::Mat::zeros(cv::Size(760, 480), image.type());
+	dst = cv::Mat::zeros(cv::Size(640, 404), image.type());
 	cv::warpPerspective(image, dst, tf, dst.size(), cv::INTER_CUBIC);
 #ifdef _DEBUG
 	cv::imshow("result", dst);
+	cv::imwrite("../output/result.jpg", dst);
 	cv::waitKey();
 #endif //end _DEBUG
 
@@ -80,7 +82,7 @@ bool LSDDetectEdge::detect(cv::Mat& image, cv::Mat& dst)
 
 void LSDDetectEdge::LSDLines(cv::Mat& gray, vector<vector<cv::Vec4i>>& lines)
 {
-	const double THETA = 30.0 / 180;
+	const double THETA = 35.0 / 180;
 	const int LINENUM = 8;
 	// lines[0] ио
 	// lines[1] об
@@ -172,7 +174,9 @@ void LSDDetectEdge::LSDLines(cv::Mat& gray, vector<vector<cv::Vec4i>>& lines)
 			cv::line(cdst, cv::Point(l[0], l[1]), cv::Point(l[2], l[3]), cv::Scalar(255 * (i<=1), 0, 255*(i>1)), 1, CV_AA);
 		}
 	}
+
 	cv::imshow("lines", cdst);
+	cv::imwrite("../output/lines.jpg", cdst);
 	cv::waitKey();
 #endif //end _DEBUG
 }
