@@ -26,7 +26,7 @@
 
 2 LSD定位直线
 
-![lines](./images/lines22.jpg)
+![lines](./images/lines2.jpg)
 
 3 寻找边缘交点
 
