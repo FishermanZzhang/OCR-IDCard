@@ -4,7 +4,7 @@
 
 LSDDetectEdge::LSDDetectEdge()
 {
-	detector_ = cv::createLineSegmentDetector(cv::LSD_REFINE_NONE, 0.8, 0.6, 1.5, 22.5);
+	detector_ = cv::createLineSegmentDetector(cv::LSD_REFINE_NONE, 0.8, 0.6, 1.5, 23.5);
 }
 
 
