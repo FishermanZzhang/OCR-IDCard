@@ -25,6 +25,11 @@ int main(int argc, char * argv[])
 		cv::Mat color = cv::imread("../Train/"+imagename);
 		//cv::imshow("color", color);
 		de.detect(color, dst);
+		
+		cv::Rect name(105, 45, 150, 45);
+		cv::Rect nums(200, 320, 400, 56);
+		cv::rectangle(dst, name, cv::Scalar(0, 0, 255));
+		cv::rectangle(dst, nums, cv::Scalar(255, 0, 0));
 		cv::imshow("img", dst);
 		cv::waitKey();
 		cv::destroyAllWindows();
