@@ -145,14 +145,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DetectEdge.cpp" />
-    <ClCompile Include="HoughDetectEdge.cpp" />
     <ClCompile Include="LSDDetectEdge.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Tools.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DetectEdge.h" />
-    <ClInclude Include="HoughDetectEdge.h" />
     <ClInclude Include="LSDDetectEdge.h" />
     <ClInclude Include="Tools.h" />
   </ItemGroup>

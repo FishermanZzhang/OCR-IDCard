@@ -2,6 +2,7 @@
 #include<opencv2\opencv.hpp>
 #include<vector>
 using namespace std;
+
 class DetectEdge
 {
 public:
