@@ -5,25 +5,7 @@
 # Result
 ![src](all/result/20121106024546582688.jpg)
 ![line](all/line/100062.jpg)
-![file](all/result/20121106024546582688.txt)
-
-{
-	"status": 0,
-		"texts": [
-		{
-			"text": "36062119380407361X",
-			"location": {
-				"x": 0,
-				"y": 0,
-				"width": 0,
-				"height": 0
-			}
-		}
-		],
-		"meta": {
-			"code": "20121106024546582688",
-		}
-}
+####"text": "36062119380407361X",
 ### more result in result dir
 # Check nums
 id.py
