@@ -8,9 +8,9 @@
 ####"text": "36062119380407361X",
 ### more result in result dir
 # Check nums
-id.py
-correct 196, total 258
-precise: 75.968992%
+## id.py
+###correct 196, total 258
+###precise: 75.968992%
 
 
 
