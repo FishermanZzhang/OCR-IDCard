@@ -12,6 +12,7 @@ int main(int argc, char * argv[])
 {
 	//cv::Mat color = cv::imread("../template/15.jpg");
 	//HoughDetectEdge de;
+	//to_string(10);
 	LSDDetectEdge de;
 
 	
@@ -27,10 +28,44 @@ int main(int argc, char * argv[])
 		for (auto & it : items)
 		{
 			cv::Mat st;
-			cv::resize(it, st, cv::Size(1.0 * 32 * it.cols / it.rows, 32), 0, 0, cv::INTER_CUBIC);
-			cv::cvtColor(st, st, CV_BGR2GRAY);
-			cv::threshold(st, st, 155, 255, CV_THRESH_OTSU | CV_THRESH_BINARY);
+			//cv::resize(it, st, cv::Size(1.0 * 32 * it.cols / it.rows, 32), 0, 0, cv::INTER_CUBIC);
+			cv::cvtColor(it, st, CV_BGR2GRAY);
+			cv::threshold(st, st, 155, 255, CV_THRESH_OTSU | CV_THRESH_BINARY_INV);
+			vector<vector<cv::Point>> points;
+			cv::findContours(st, points, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
+			vector<cv::Rect> regions;
+			for (auto ps : points){
+				cv::Rect region;
+				int minx = INT_MAX;
+				int maxx = 0;
+				int miny = INT_MAX;
+				int maxy = 0;
+				for (auto p : ps){
+					minx = std::min(minx, p.x);
+					maxx = std::max(maxx, p.x);
+					miny = std::min(miny, p.y);
+					maxy = std::max(maxy, p.y);
+				}
+				region.x = minx;
+				region.y = miny;
+				region.width = maxx - minx;
+				region.height = maxy - miny;
+				if (region.size().area() <= 10){
+					continue;
+				}
+				regions.emplace_back(region);
+				//cv::imshow("block", it(region));
+				//cv::waitKey();
+			}
 
+			sort(regions.begin(), regions.end(), [](cv::Rect r1, cv::Rect r2){
+				return r1.x < r2.x;
+			});
+			for (auto r : regions){
+				cout << r.width << " " << r.height;
+				cv::imshow("block", it(r));
+				cv::waitKey();
+			}
 			cv::imshow("it", st);
 			cv::waitKey();
 		}
