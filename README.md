@@ -6,7 +6,7 @@
 ![src](all/result/20121106024546582688.jpg)
 ![line](all/line/100062.jpg)
 ####"text": "36062119380407361X",
-### more result in result dir
+### more result in dir all/result/
 ******
 # Check nums
 ## all/id.py
