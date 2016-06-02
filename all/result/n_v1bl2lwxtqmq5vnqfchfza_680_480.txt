@@ -1,0 +1,19 @@
+{
+    "status": 0,
+    "url": "/export/zhangzhen/rnn/IDCard/image/n_v1bl2lwxtqmq5vnqfchfza_680_480.jpg",
+    "texts": [
+        {
+            "text": "360281198809057915",
+            "location": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            }
+        }
+    ],
+    "meta": {
+        "code": "n_v1bl2lwxtqmq5vnqfchfza_680_480",
+        "prefix": "/export/zhangzhen/rnn/testResult/id/n_v1bl2lwxtqmq5vnqfchfza_680_480"
+    }
+}

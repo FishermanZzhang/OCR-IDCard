@@ -1,0 +1,19 @@
+{
+    "status": 0,
+    "url": "/export/zhangzhen/rnn/IDCard/image/RQysTb0E.jpg",
+    "texts": [
+        {
+            "text": "51102519861016397X",
+            "location": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            }
+        }
+    ],
+    "meta": {
+        "code": "RQysTb0E",
+        "prefix": "/export/zhangzhen/rnn/testResult/id/RQysTb0E"
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "status": 0,
+    "url": "/export/zhangzhen/rnn/IDCard/image/d96cd77c7160c899.jpg",
+    "texts": [
+        {
+            "text": "132528197707171919",
+            "location": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            }
+        }
+    ],
+    "meta": {
+        "code": "d96cd77c7160c899",
+        "prefix": "/export/zhangzhen/rnn/testResult/id/d96cd77c7160c899"
+    }
+}

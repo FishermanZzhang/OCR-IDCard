@@ -1,0 +1,19 @@
+{
+    "status": 0,
+    "url": "/export/zhangzhen/rnn/IDCard/image/9922720e0cf3d7ca8a3d5a37f21fbe096a63a9ac.jpg",
+    "texts": [
+        {
+            "text": "32050419940205254X",
+            "location": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            }
+        }
+    ],
+    "meta": {
+        "code": "9922720e0cf3d7ca8a3d5a37f21fbe096a63a9ac",
+        "prefix": "/export/zhangzhen/rnn/testResult/id/9922720e0cf3d7ca8a3d5a37f21fbe096a63a9ac"
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "status": 0,
+    "url": "/export/zhangzhen/rnn/IDCard/image/a_53533381.jpg",
+    "texts": [
+        {
+            "text": "X460181194X107XX4",
+            "location": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            }
+        }
+    ],
+    "meta": {
+        "code": "a_53533381",
+        "prefix": "/export/zhangzhen/rnn/testResult/id/a_53533381"
+    }
+}

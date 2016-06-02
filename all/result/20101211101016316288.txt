@@ -1,0 +1,19 @@
+{
+    "status": 0,
+    "url": "/export/zhangzhen/rnn/IDCard/image/20101211101016316288.JPG",
+    "texts": [
+        {
+            "text": "330702195612255638",
+            "location": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+            }
+        }
+    ],
+    "meta": {
+        "code": "20101211101016316288",
+        "prefix": "/export/zhangzhen/rnn/testResult/id/20101211101016316288"
+    }
+}
