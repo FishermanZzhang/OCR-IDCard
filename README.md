@@ -3,7 +3,10 @@
 ##tips : [NuGet](http://www.nuget.org/) 程序包管理器 (第一次加载需要连接互联网，自动下载opencv3，并能够实现自动配置）
 
 # Result
-![all/result/20121106024546582688.jpg](all/result/20121106024546582688.jpg)
+![src](all/result/20121106024546582688.jpg)
+![line](all/line/100062.jpg)
+![file](all/result/20121106024546582688.txt)
+
 {
 	"status": 0,
 		"texts": [
