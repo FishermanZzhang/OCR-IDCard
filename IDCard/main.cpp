@@ -8,6 +8,8 @@
 
 using namespace std;
 
+
+
 int main(int argc, char * argv[])
 {
 	//cv::Mat color = cv::imread("../template/15.jpg");
@@ -31,9 +33,14 @@ int main(int argc, char * argv[])
 			//cv::resize(it, st, cv::Size(1.0 * 32 * it.cols / it.rows, 32), 0, 0, cv::INTER_CUBIC);
 			cv::cvtColor(it, st, CV_BGR2GRAY);
 			cv::threshold(st, st, 155, 255, CV_THRESH_OTSU | CV_THRESH_BINARY_INV);
+			cv::Mat element = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(2, 7));
+			//cv::dilate(st, st, element);
+			cv::morphologyEx(st, st, cv::MORPH_DILATE, element);
+
 			vector<vector<cv::Point>> points;
 			cv::findContours(st, points, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
 			vector<cv::Rect> regions;
+			int blockheight = 0;
 			for (auto ps : points){
 				cv::Rect region;
 				int minx = INT_MAX;
@@ -50,17 +57,43 @@ int main(int argc, char * argv[])
 				region.y = miny;
 				region.width = maxx - minx;
 				region.height = maxy - miny;
-				if (region.size().area() <= 10){
+				blockheight = std::max(blockheight, maxy - miny);
+				if (region.size().area() <= 40 || region.width < 5){
 					continue;
 				}
 				regions.emplace_back(region);
 				//cv::imshow("block", it(region));
 				//cv::waitKey();
 			}
-
+			regions.clear();
 			sort(regions.begin(), regions.end(), [](cv::Rect r1, cv::Rect r2){
 				return r1.x < r2.x;
 			});
+			vector<cv::Rect> tmpregions;
+			tmpregions.swap(regions);
+			for (int i = 0; i < tmpregions.size(); ++i){
+				if (tmpregions[i].width > 1.7 * blockheight){
+					//regions.emplace_back(tmpregions[i]);
+					regions.emplace_back(cv::Rect(tmpregions[i].x, tmpregions[i].y, tmpregions[i].width / 2, tmpregions[i].height));
+					regions.emplace_back(cv::Rect(tmpregions[i].x + tmpregions[i].width / 2, tmpregions[i].y, tmpregions[i].width - tmpregions[i].width / 2, tmpregions[i].height));
+				}
+				else if (tmpregions[i].width > 0.75* blockheight){
+					regions.emplace_back(tmpregions[i]);
+				}
+				else{
+					int j = i + 1;
+					cv::Rect mergeRect = tmpregions[i];
+					int width = tmpregions[i].width;
+					for (; j < tmpregions.size(); ++j){
+						width = tmpregions[j].x + tmpregions[j].width - tmpregions[i].x;
+						if (width > 1.1 * blockheight) break;
+						mergeRect |= tmpregions[j];
+
+					}
+					regions.emplace_back(mergeRect);
+					i = j - 1;
+				}
+			}
 			for (auto r : regions){
 				cout << r.width << " " << r.height;
 				cv::imshow("block", it(r));
@@ -68,6 +101,7 @@ int main(int argc, char * argv[])
 			}
 			cv::imshow("it", st);
 			cv::waitKey();
+			break;
 		}
 		
 		//cv::Rect nameRect(105, 42, 150, 55);
