@@ -6,9 +6,7 @@ x64/
 *.opensdf
 Input/
 Output/
-Test/
 Train/
-train.txt
-test.txt
+Test/
 template/
 packages/

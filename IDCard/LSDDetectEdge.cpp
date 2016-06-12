@@ -4,13 +4,87 @@
 
 LSDDetectEdge::LSDDetectEdge()
 {
-	detector_ = cv::createLineSegmentDetector(cv::LSD_REFINE_NONE, 0.8, 0.6, 4.0, 20);
+	detector_ = cv::createLineSegmentDetector(cv::LSD_REFINE_NONE, 0.8, 0.6, 1.5, 23.5);
 }
 
 
 LSDDetectEdge::~LSDDetectEdge()
 {
 }
+
+
+void LSDDetectEdge::detect(cv::Mat& image, vector<cv::Mat>& items)
+{
+	cv::Mat normalimage;
+	bool flag = detect(image, normalimage);
+	if (!flag)
+	{
+		return;
+	}
+	cv::Rect nameRect(105, 42, 150, 55);
+	cv::Rect numsRect(200, 320, 410, 56);
+	auto trim = [](const cv::Mat& block){
+		cv::Mat gray;
+		if (block.channels() == 3){
+			cv::cvtColor(block, gray, CV_BGR2GRAY);
+		}
+		else{
+			gray = block;
+		}
+		pair<int, int> height;
+		cv::Mat bin;
+		cv::threshold(gray, bin, 150, 255, CV_THRESH_BINARY_INV | CV_THRESH_OTSU);
+
+		vector<int> feature(gray.rows);
+		for (int i = 0; i < gray.rows; ++i){
+			cv::Mat& tmpmat = bin.row(i);
+			cv::Scalar s = cv::sum(tmpmat);
+			feature[i] = s[0];
+		}
+		int half = gray.rows / 2;
+		if (feature[half] == 0){
+			half = gray.rows / 3;
+		}
+		if (feature[half] == 0){
+			half = gray.rows * 2 / 3;
+		}
+		if (feature[half] == 0){
+			half = gray.rows / 4;
+		}
+		if (feature[half] == 0){
+			half = gray.rows * 3 / 4;
+		}
+		int y1 = half;
+		int y2 = half;
+		while (y1 >= 0 && feature[y1] != 0){
+			--y1;
+		}
+		while (y2 < gray.rows && feature[y2] != 0){
+			++y2;
+		}
+		height.first = std::max(0, y1 - 2);
+		height.second = std::min(gray.rows, y2 + 2);
+		return height;
+	};
+	pair<int, int> heightname;
+	pair<int, int> heightnums;
+	cv::Mat& nametmp = normalimage(nameRect);
+	cv::Mat& numstmp = normalimage(numsRect);
+
+	heightname = trim(nametmp);
+	heightnums = trim(numstmp);
+	cv::Mat nameMat = nametmp.rowRange(heightname.first, heightname.second).clone();
+	cv::Mat numsMat = numstmp.rowRange(heightnums.first, heightnums.second).clone();
+#ifdef _DEBUG
+	cv::imshow("img", normalimage);
+	cv::imshow("name", nameMat);
+	cv::imshow("nums", numsMat);
+	cv::waitKey();
+#endif //end _DEBUG
+	items.emplace_back(nameMat);
+	items.emplace_back(numsMat);
+}
+
 
 void LSDDetectEdge::detect(cv::Mat& image, vector<cv::Vec4i>& edges)
 {
@@ -26,6 +100,22 @@ void LSDDetectEdge::detect(cv::Mat& image, vector<cv::Vec4i>& edges)
 	else{
 		gray = image.clone();
 	}
+	//±ßÔµÔöÇ¿
+	//cv::Mat gray_x, gray_y;
+	//cv::Sobel(gray, gray_x, CV_16S, 1, 0, 3);
+	//gray_x = cv::abs(gray_x);
+	//gray_x.convertTo(gray_x, CV_8U);
+	//cv::Sobel(gray, gray_y, CV_16S, 0, 1, 3);
+	//gray_y = cv::abs(gray_y);
+	//gray_y.convertTo(gray_y, CV_8U);
+	//cv::add(gray, gray_x,gray);
+	//cv::add(gray, gray_y, gray);
+	//cv::Mat blurMat, blurMat16;
+	//cv::GaussianBlur(gray, blurMat, cv::Size(3, 3), 0, 0);
+	//cv::Laplacian(blurMat, blurMat16, CV_16S);
+	//blurMat16 = cv::abs(blurMat16);
+	//blurMat16.convertTo(blurMat, CV_8U);
+	//cv::add(gray, blurMat, gray);
 	vector<vector<cv::Vec4i>> lines;
 	LSDLines(gray, lines);
 	if (lines.size() != 4) return;

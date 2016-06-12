@@ -21,9 +21,6 @@
     <ClCompile Include="DetectEdge.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="HoughDetectEdge.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="LSDDetectEdge.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -33,9 +30,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DetectEdge.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="HoughDetectEdge.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="LSDDetectEdge.h">

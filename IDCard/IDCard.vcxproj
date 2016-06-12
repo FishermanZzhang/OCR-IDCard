@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\opencv3.3.0.0.1\build\native\opencv3.props" Condition="Exists('..\..\packages\opencv3.3.0.0.1\build\native\opencv3.props')" />
   <Import Project="..\packages\opencv3.3.0.0.1\build\native\opencv3.props" Condition="Exists('..\packages\opencv3.3.0.0.1\build\native\opencv3.props')" />
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -145,14 +146,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DetectEdge.cpp" />
-    <ClCompile Include="HoughDetectEdge.cpp" />
     <ClCompile Include="LSDDetectEdge.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Tools.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DetectEdge.h" />
-    <ClInclude Include="HoughDetectEdge.h" />
     <ClInclude Include="LSDDetectEdge.h" />
     <ClInclude Include="Tools.h" />
   </ItemGroup>
@@ -163,5 +162,7 @@
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\opencv3.redist.3.0.0.1\build\native\opencv3.redist.targets" Condition="Exists('..\packages\opencv3.redist.3.0.0.1\build\native\opencv3.redist.targets')" />
     <Import Project="..\packages\opencv3.3.0.0.1\build\native\opencv3.targets" Condition="Exists('..\packages\opencv3.3.0.0.1\build\native\opencv3.targets')" />
+    <Import Project="..\..\packages\opencv3.redist.3.0.0.1\build\native\opencv3.redist.targets" Condition="Exists('..\..\packages\opencv3.redist.3.0.0.1\build\native\opencv3.redist.targets')" />
+    <Import Project="..\..\packages\opencv3.3.0.0.1\build\native\opencv3.targets" Condition="Exists('..\..\packages\opencv3.3.0.0.1\build\native\opencv3.targets')" />
   </ImportGroup>
 </Project>

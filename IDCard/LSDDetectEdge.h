@@ -9,6 +9,7 @@ public:
 	virtual ~LSDDetectEdge();
 	virtual void detect(cv::Mat& image, vector<cv::Vec4i>& edges);
 	virtual bool detect(cv::Mat& image, cv::Mat& dst);
+	virtual void detect(cv::Mat& image, vector<cv::Mat>& items);
 	void LSDLines(cv::Mat& gary, vector<vector<cv::Vec4i>>& lines);
 	void mergeLines(vector<vector<cv::Vec4i>>& lines, vector<cv::Vec4i>& edges);
 private:
