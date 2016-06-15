@@ -8,10 +8,13 @@
 ####"text": "36062119380407361X",
 ### more result in dir all/result/
 ******
-# Check nums
+# Check nums and name
 ## all/id.py
-###correct 196, total 258
-###precise: 75.968992%
+###numscorrect 200, total 258, precise: 77.519380%
+###namecorrect 156, total 258, precise: 60.465116%
+##correct 140, total 258, precise: 54.263566%
+### [the detail result](all/result.txt)
+
 ******
 #examples:
 ### 图片来自百度图片,图片仅做学术交流。如有侵权请联系[我](mailto:1099905725@qq.com)
