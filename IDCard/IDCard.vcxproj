@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\NugetPackages\opencv3.3.0.0.1\build\native\opencv3.props" Condition="Exists('..\..\NugetPackages\opencv3.3.0.0.1\build\native\opencv3.props')" />
   <Import Project="..\..\packages\opencv3.3.0.0.1\build\native\opencv3.props" Condition="Exists('..\..\packages\opencv3.3.0.0.1\build\native\opencv3.props')" />
   <Import Project="..\packages\opencv3.3.0.0.1\build\native\opencv3.props" Condition="Exists('..\packages\opencv3.3.0.0.1\build\native\opencv3.props')" />
   <ItemGroup Label="ProjectConfigurations">
@@ -67,7 +68,9 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Label="UserMacros">
+    <NuGetPackageImportStamp>d5ff927b</NuGetPackageImportStamp>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
@@ -164,5 +167,15 @@
     <Import Project="..\packages\opencv3.3.0.0.1\build\native\opencv3.targets" Condition="Exists('..\packages\opencv3.3.0.0.1\build\native\opencv3.targets')" />
     <Import Project="..\..\packages\opencv3.redist.3.0.0.1\build\native\opencv3.redist.targets" Condition="Exists('..\..\packages\opencv3.redist.3.0.0.1\build\native\opencv3.redist.targets')" />
     <Import Project="..\..\packages\opencv3.3.0.0.1\build\native\opencv3.targets" Condition="Exists('..\..\packages\opencv3.3.0.0.1\build\native\opencv3.targets')" />
+    <Import Project="..\..\NugetPackages\opencv3.redist.3.0.0.1\build\native\opencv3.redist.targets" Condition="Exists('..\..\NugetPackages\opencv3.redist.3.0.0.1\build\native\opencv3.redist.targets')" />
+    <Import Project="..\..\NugetPackages\opencv3.3.0.0.1\build\native\opencv3.targets" Condition="Exists('..\..\NugetPackages\opencv3.3.0.0.1\build\native\opencv3.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。启用“NuGet 程序包还原”可下载这些程序包。有关详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\NugetPackages\opencv3.redist.3.0.0.1\build\native\opencv3.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\NugetPackages\opencv3.redist.3.0.0.1\build\native\opencv3.redist.targets'))" />
+    <Error Condition="!Exists('..\..\NugetPackages\opencv3.3.0.0.1\build\native\opencv3.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\NugetPackages\opencv3.3.0.0.1\build\native\opencv3.props'))" />
+    <Error Condition="!Exists('..\..\NugetPackages\opencv3.3.0.0.1\build\native\opencv3.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\NugetPackages\opencv3.3.0.0.1\build\native\opencv3.targets'))" />
+  </Target>
 </Project>
