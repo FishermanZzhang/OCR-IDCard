@@ -19,7 +19,7 @@ int main(int argc, char * argv[])
 
 	
 	vector<cv::Vec4i> edges;
-	ifstream input("./idimages.txt");
+	ifstream input("./train.txt");
 	string imagename;
 	while (input >> imagename)
 	{
